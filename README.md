@@ -1,6 +1,9 @@
 # RiceTools
 >Editors, packers, converters for DriftCity/SkidRush files
 
+## RicePack
+>Formats supported: `.agt`, `.tdf` (inside AGT), `.lof` (read-only)
+
 ## RiceConvert
 >Formats supported: `.hit` (produces `.hit.obj`)
 
