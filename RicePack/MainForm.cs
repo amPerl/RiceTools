@@ -64,7 +64,6 @@ namespace RicePack
 
             bool isTDF = SelectedNode.Tag is AGTFile && (SelectedNode.Tag as AGTFile).Name.Contains(".tdf");
             tdfToolStripMenuItem.Enabled = isTDF;
-            ActiveTDF = isTDF ? TDF.Load((SelectedFile as AGTFile).Decompress(), tdfGridView) : null;
 
             tdfGridView.Rows.Clear();
             tdfGridView.Columns.Clear();
@@ -74,6 +73,7 @@ namespace RicePack
                 return;
 
             SelectedFile = SelectedNode.Tag as ArchiveFile;
+            ActiveTDF = isTDF ? TDF.Load((SelectedFile as AGTFile).Decompress(), tdfGridView) : null;
         }
 
         private void saveTdfButton_Click(object sender, EventArgs e)
