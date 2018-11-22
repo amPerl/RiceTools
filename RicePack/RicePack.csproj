@@ -56,6 +56,7 @@
     <Compile Include="Archives\AGT.cs" />
     <Compile Include="Archives\ArchiveBase.cs" />
     <Compile Include="Archives\LOF.cs" />
+    <Compile Include="Archives\NTX.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

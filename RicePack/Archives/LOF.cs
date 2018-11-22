@@ -52,8 +52,22 @@ namespace RicePack.Archives
     {
         public LOF() : base() { }
 
+        private string readNullTerminated(BinaryReader br)
+        {
+            var sb = new StringBuilder();
+            byte lastByte = br.ReadByte();
+            while (lastByte > 0)
+            {
+                sb.Append((char)lastByte);
+                lastByte = br.ReadByte();
+            }
+            return sb.ToString();
+        }
+
         public override void Load(string filePath)
         {
+            RootFolder = new LOFFolder(this);
+
             using (var fs = File.OpenRead(filePath))
             using (var br = new BinaryReader(fs))
             {
@@ -61,19 +75,11 @@ namespace RicePack.Archives
                 int fileCount = br.ReadInt32();
                 fs.Seek(4, SeekOrigin.Current);
 
-                RootFolder = new LOFFolder(this);
-
                 for (int i = 0; i < fileCount; i++)
                 {
-                    fs.Seek(4 * 6 + 1, SeekOrigin.Current); // 6 ints, 1 byte
-                    var sb = new StringBuilder();
-                    byte lastByte = br.ReadByte();
-                    while (lastByte > 0)
-                    {
-                        sb.Append((char)lastByte);
-                        lastByte = br.ReadByte();
-                    }
-                    string fileName = sb.ToString();
+                    fs.Seek(4 * 6, SeekOrigin.Current); // 6 ints
+                    readNullTerminated(br); // korean name, can ignore
+                    string fileName = readNullTerminated(br);
                     fs.Seek(4 * 3, SeekOrigin.Current); // 3 ints
                     int filePos = br.ReadInt32();
                     int fileLen = br.ReadInt32();

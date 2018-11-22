@@ -31,6 +31,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.openAGTButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.openLOFButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.openNTXButton = new System.Windows.Forms.ToolStripMenuItem();
             this.fileSaveButton = new System.Windows.Forms.ToolStripMenuItem();
             this.fileSaveAsButton = new System.Windows.Forms.ToolStripMenuItem();
             this.archiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,7 +41,6 @@
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutButton = new System.Windows.Forms.ToolStripMenuItem();
             this.tdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveTdfButton = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -47,16 +49,20 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.columnReplaceButton = new System.Windows.Forms.ToolStripMenuItem();
             this.columnReplaceValueBox = new System.Windows.Forms.ToolStripTextBox();
+            this.aboutButton = new System.Windows.Forms.ToolStripMenuItem();
             this.fileTreeView = new System.Windows.Forms.TreeView();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.viewTab = new System.Windows.Forms.TabPage();
             this.tdfGridView = new System.Windows.Forms.DataGridView();
-            this.openAGTButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.openLOFButton = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.viewTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tdfGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -88,10 +94,32 @@
             // 
             this.openButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openAGTButton,
-            this.openLOFButton});
+            this.openLOFButton,
+            this.openNTXButton});
             this.openButton.Name = "openButton";
             this.openButton.Size = new System.Drawing.Size(216, 26);
             this.openButton.Text = "Open";
+            // 
+            // openAGTButton
+            // 
+            this.openAGTButton.Name = "openAGTButton";
+            this.openAGTButton.Size = new System.Drawing.Size(216, 26);
+            this.openAGTButton.Text = "AGT";
+            this.openAGTButton.Click += new System.EventHandler(this.openAGTButton_Click);
+            // 
+            // openLOFButton
+            // 
+            this.openLOFButton.Name = "openLOFButton";
+            this.openLOFButton.Size = new System.Drawing.Size(216, 26);
+            this.openLOFButton.Text = "LOF";
+            this.openLOFButton.Click += new System.EventHandler(this.openLOFButton_Click);
+            // 
+            // openNTXButton
+            // 
+            this.openNTXButton.Name = "openNTXButton";
+            this.openNTXButton.Size = new System.Drawing.Size(216, 26);
+            this.openNTXButton.Text = "NTX";
+            this.openNTXButton.Click += new System.EventHandler(this.openNTXButton_Click);
             // 
             // fileSaveButton
             // 
@@ -122,37 +150,30 @@
             // exportAllToolStripMenuItem
             // 
             this.exportAllToolStripMenuItem.Name = "exportAllToolStripMenuItem";
-            this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.exportAllToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.exportAllToolStripMenuItem.Text = "Export All";
             this.exportAllToolStripMenuItem.Click += new System.EventHandler(this.exportAllToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.exportToolStripMenuItem.Text = "Export Selected";
             this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
             // 
             // replaceToolStripMenuItem
             // 
             this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
-            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.replaceToolStripMenuItem.Text = "Replace Selected";
             this.replaceToolStripMenuItem.Click += new System.EventHandler(this.replaceToolStripMenuItem_Click);
             // 
             // addFileToolStripMenuItem
             // 
             this.addFileToolStripMenuItem.Name = "addFileToolStripMenuItem";
-            this.addFileToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.addFileToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.addFileToolStripMenuItem.Text = "Add File";
             this.addFileToolStripMenuItem.Click += new System.EventHandler(this.addFileToolStripMenuItem_Click);
-            // 
-            // aboutButton
-            // 
-            this.aboutButton.Name = "aboutButton";
-            this.aboutButton.Size = new System.Drawing.Size(62, 24);
-            this.aboutButton.Text = "About";
-            this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
             // 
             // tdfToolStripMenuItem
             // 
@@ -210,14 +231,22 @@
             this.columnReplaceValueBox.Name = "columnReplaceValueBox";
             this.columnReplaceValueBox.Size = new System.Drawing.Size(100, 27);
             // 
+            // aboutButton
+            // 
+            this.aboutButton.Name = "aboutButton";
+            this.aboutButton.Size = new System.Drawing.Size(62, 24);
+            this.aboutButton.Text = "About";
+            this.aboutButton.Click += new System.EventHandler(this.aboutButton_Click);
+            // 
             // fileTreeView
             // 
-            this.fileTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.fileTreeView.Location = new System.Drawing.Point(17, 33);
+            this.fileTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fileTreeView.Location = new System.Drawing.Point(4, 4);
             this.fileTreeView.Margin = new System.Windows.Forms.Padding(4);
             this.fileTreeView.Name = "fileTreeView";
-            this.fileTreeView.Size = new System.Drawing.Size(243, 424);
+            this.fileTreeView.Size = new System.Drawing.Size(311, 434);
             this.fileTreeView.TabIndex = 1;
             this.fileTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.fileTreeView_AfterSelect);
             // 
@@ -227,11 +256,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.viewTab);
-            this.tabControl.Location = new System.Drawing.Point(269, 33);
+            this.tabControl.Location = new System.Drawing.Point(4, 4);
             this.tabControl.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(673, 425);
+            this.tabControl.Size = new System.Drawing.Size(628, 434);
             this.tabControl.TabIndex = 2;
             // 
             // viewTab
@@ -241,7 +270,7 @@
             this.viewTab.Margin = new System.Windows.Forms.Padding(4);
             this.viewTab.Name = "viewTab";
             this.viewTab.Padding = new System.Windows.Forms.Padding(4);
-            this.viewTab.Size = new System.Drawing.Size(665, 396);
+            this.viewTab.Size = new System.Drawing.Size(620, 405);
             this.viewTab.TabIndex = 0;
             this.viewTab.Text = "View";
             this.viewTab.UseVisualStyleBackColor = true;
@@ -256,30 +285,34 @@
             this.tdfGridView.Margin = new System.Windows.Forms.Padding(4);
             this.tdfGridView.Name = "tdfGridView";
             this.tdfGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.ColumnHeaderSelect;
-            this.tdfGridView.Size = new System.Drawing.Size(645, 377);
+            this.tdfGridView.Size = new System.Drawing.Size(600, 386);
             this.tdfGridView.TabIndex = 0;
             // 
-            // openAGTButton
+            // splitContainer1
             // 
-            this.openAGTButton.Name = "openAGTButton";
-            this.openAGTButton.Size = new System.Drawing.Size(216, 26);
-            this.openAGTButton.Text = "AGT";
-            this.openAGTButton.Click += new System.EventHandler(this.openAGTButton_Click);
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(0, 31);
+            this.splitContainer1.Name = "splitContainer1";
             // 
-            // openLOFButton
+            // splitContainer1.Panel1
             // 
-            this.openLOFButton.Name = "openLOFButton";
-            this.openLOFButton.Size = new System.Drawing.Size(216, 26);
-            this.openLOFButton.Text = "LOF";
-            this.openLOFButton.Click += new System.EventHandler(this.openLOFButton_Click);
+            this.splitContainer1.Panel1.Controls.Add(this.fileTreeView);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tabControl);
+            this.splitContainer1.Size = new System.Drawing.Size(959, 442);
+            this.splitContainer1.SplitterDistance = 319;
+            this.splitContainer1.TabIndex = 3;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(959, 473);
-            this.Controls.Add(this.tabControl);
-            this.Controls.Add(this.fileTreeView);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -291,6 +324,10 @@
             this.tabControl.ResumeLayout(false);
             this.viewTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tdfGridView)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,6 +360,8 @@
         private System.Windows.Forms.ToolStripMenuItem addFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openAGTButton;
         private System.Windows.Forms.ToolStripMenuItem openLOFButton;
+        private System.Windows.Forms.ToolStripMenuItem openNTXButton;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 

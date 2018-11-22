@@ -238,6 +238,15 @@ namespace RicePack
             setReadOnly(true);
         }
 
+        private void openNTXButton_Click(object sender, EventArgs e)
+        {
+            var diag = new OpenFileDialog { CheckFileExists = true };
+            if (diag.ShowDialog() != DialogResult.OK)
+                return;
+
+            openFile(diag.FileName, new NTX());
+        }
+
         private void setReadOnly(bool readOnly)
         {
             // make sure openFile resets these
