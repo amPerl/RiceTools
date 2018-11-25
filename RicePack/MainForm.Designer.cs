@@ -243,11 +243,14 @@
             this.fileTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.fileTreeView.LabelEdit = true;
             this.fileTreeView.Location = new System.Drawing.Point(4, 4);
             this.fileTreeView.Margin = new System.Windows.Forms.Padding(4);
             this.fileTreeView.Name = "fileTreeView";
             this.fileTreeView.Size = new System.Drawing.Size(311, 434);
             this.fileTreeView.TabIndex = 1;
+            this.fileTreeView.BeforeLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.fileTreeView_BeforeLabelEdit);
+            this.fileTreeView.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.fileTreeView_AfterLabelEdit);
             this.fileTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.fileTreeView_AfterSelect);
             // 
             // tabControl

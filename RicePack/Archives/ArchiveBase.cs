@@ -11,7 +11,7 @@ namespace RicePack.Archives
     {
         public ArchiveBase Archive;
         public ArchiveFolder ParentFolder;
-        public string Name, FullPath;
+        public string Name;
 
         public List<ArchiveFolder> SubFolders = new List<ArchiveFolder>();
         public List<ArchiveFile> Files = new List<ArchiveFile>();
@@ -21,7 +21,6 @@ namespace RicePack.Archives
             Archive = archive;
             ParentFolder = null;
             Name = "";
-            FullPath = "";
         }
 
         public ArchiveFolder(ArchiveBase archive, ArchiveFolder parent, string name)
@@ -29,7 +28,15 @@ namespace RicePack.Archives
             Archive = archive;
             ParentFolder = parent;
             Name = name;
-            FullPath = ParentFolder.FullPath + Name + "\\";
+        }
+
+        public string FullPath
+        {
+            get
+            {
+                if (ParentFolder == null) return "";
+                return ParentFolder.FullPath + Name + "\\";
+            }
         }
 
         public virtual ArchiveFile AddFile(string filePath)

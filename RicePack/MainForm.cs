@@ -255,5 +255,28 @@ namespace RicePack
             replaceToolStripMenuItem.Enabled = !readOnly;
             addFileToolStripMenuItem.Enabled = !readOnly;
         }
+
+        private void fileTreeView_BeforeLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+        }
+
+        private void fileTreeView_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            if (e.Node.Tag is ArchiveFolder)
+            {
+                var folder = e.Node.Tag as ArchiveFolder;
+                folder.Name = e.Label;
+                e.Node.Name = e.Label;
+                return;
+            }
+
+            if (e.Node.Tag is ArchiveFile)
+            {
+                var file = e.Node.Tag as ArchiveFile;
+                file.Name = e.Label;
+                e.Node.Name = e.Label;
+                return;
+            }
+        }
     }
 }
