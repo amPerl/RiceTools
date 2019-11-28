@@ -17,6 +17,7 @@ namespace RiceConvert
                     continue;
 
                 string pathLower = path.ToLower();
+                
                 if (pathLower.EndsWith(".hit"))
                 {
                     var model = HITFile.LoadHIT(path);
@@ -27,6 +28,12 @@ namespace RiceConvert
                 {
                     var model = HITFile.LoadOBJ(path);
                     model.SaveHIT(path.Replace(".hit.obj", ".hit"));
+                }
+                
+                if (pathLower.EndsWith(".chpath"))
+                {
+                    var model = CHPATHFile.LoadCHPATH(path);
+                    model.SaveOBJ(path.Replace(".chpath", ".chpath.obj"));
                 }
             }
         }
