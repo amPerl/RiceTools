@@ -74,11 +74,10 @@ namespace RicePack.Archives
             {
                 while (br.PeekChar() >= 0)
                 {
-                    string name = Encoding.ASCII.GetString(br.ReadBytes(64)).Split('\0')[0];
+                    string name = Encoding.ASCII.GetString(br.ReadBytes(16)).Split('\0')[0];
                     int length = br.ReadInt32();
-                    fs.Seek(4, SeekOrigin.Current);
                     byte[] data = br.ReadBytes(length);
-                    
+
                     var newFile = new NTXFile(RootFolder as NTXFolder, name, data);
                     RootFolder.Files.Add(newFile);
                     FileList.Add(newFile);
@@ -97,13 +96,12 @@ namespace RicePack.Archives
                 {
                     var ntxFile = file as NTXFile;
 
-                    var nameBlock = new byte[64];
+                    var nameBlock = new byte[16];
                     var nameBytes = Encoding.ASCII.GetBytes(file.Name);
                     Buffer.BlockCopy(nameBytes, 0, nameBlock, 0, nameBytes.Length);
                     bw.Write(nameBlock);
 
                     bw.Write(ntxFile.Data.Length);
-                    bw.Write(0);
                     bw.Write(ntxFile.Data);
                 }
             }
