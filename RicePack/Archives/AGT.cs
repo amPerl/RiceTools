@@ -46,13 +46,8 @@ namespace RicePack.Archives
             foreach (var chunk in CompressedChunks)
             {
                 byte[] decompressedChunk = DeflateStream.UncompressBuffer(chunk);
-                if (currentFileBufPos + decompressedChunk.Length > DecompressedLength)
-                {
-                    byte[] newDecomp = new byte[currentFileBufPos + decompressedChunk.Length];
-                    Buffer.BlockCopy(decompressed, 0, newDecomp, 0, currentFileBufPos);
-                    decompressed = newDecomp;
-                }
-                Buffer.BlockCopy(decompressedChunk, 0, decompressed, currentFileBufPos, decompressedChunk.Length);
+                int writeLength = Math.Min(decompressedChunk.Length, DecompressedLength - currentFileBufPos);
+                Buffer.BlockCopy(decompressedChunk, 0, decompressed, currentFileBufPos, writeLength);
                 currentFileBufPos += decompressedChunk.Length;
             }
             return decompressed;
