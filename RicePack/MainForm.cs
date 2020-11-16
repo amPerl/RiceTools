@@ -159,7 +159,7 @@ namespace RicePack
 
             extractFolder(ActiveArchive.RootFolder, diag.SelectedPath);
 
-            MessageBox.Show($"Extracted to ${diag.SelectedPath}.");
+            MessageBox.Show($"Extracted to {diag.SelectedPath}");
         }
 
         private void extractFolder(ArchiveFolder folder, string outPath)
